@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Объекты в JavaScript</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <h1>Объекты в JavaScript</h1>
+    
+    <div class="section">
+        <h2>1. Что понимается под объектом в JavaScript?</h2>
+        <p>В JavaScript объект — это составной тип данных, который позволяет хранить коллекции свойств (пар ключ-значение) и методы (функции). Объекты используются для представления сложных структур данных.</p>
+        
+        <div class="code-block">// Примеры встроенных объектов JavaScript:
+// 1. Объект Math для математических операций
+// 2. Объект Date для работы с датами и временем
+// 3. Объект String для работы со строками
+// 4. Объект Array для работы с массивами
+// 5. Объект Console для вывода информации в консоль
+// 6. Объект Document для работы с DOM</div>
+        
+        <div class="btn-container">
+            <button class="btn" onclick="showMathExamples()">Показать примеры объекта Math</button>
+            <button class="btn" onclick="showDateExamples()">Показать примеры объекта Date</button>
+        </div>
+        
+        <div id="mathExamples" class="result" style="display: none;"></div>
+        <div id="dateExamples" class="result" style="display: none;"></div>
+    </div>
+    
+    <div class="section">
+        <h2>2. Пример описания пользовательского объекта в JS</h2>
+        <p>Пользовательские объекты можно создавать с помощью литерала объекта, конструктора или класса.</p>
+        
+        <div class="code-block">// Создание объекта с помощью литерала объекта
+let car = {
+    brand: "Toyota",
+    model: "Camry",
+    year: 2020,
+    color: "синий",
+    startEngine: function() {
+        return "Двигатель запущен!";
+    },
+    getInfo: function() {
+        return `${this.brand} ${this.model}, ${this.year} года, цвет: ${this.color}`;
+    }
+};</div>
+        
+        <div class="btn-container">
+            <button class="btn" onclick="showCarInfo()">Показать информацию об автомобиле</button>
+        </div>
+        
+        <div id="carInfo" class="result" style="display: none;"></div>
+    </div>
+    
+    <div class="section">
+        <h2>3. Пример доступа к свойствам объекта в JS</h2>
+        <p>Доступ к свойствам объекта можно получить двумя способами: через точку и через квадратные скобки.</p>
+        
+        <div class="code-block">let person = {
+    name: "Иван",
+    age: 30,
+    "favorite color": "синий" // свойство с пробелом в названии
+};
+
+// Доступ через точку
+console.log(person.name); // "Иван"
+
+// Доступ через квадратные скобки
+console.log(person["age"]); // 30
+
+// Для свойств с пробелами или специальными символами
+// можно использовать только квадратные скобки
+console.log(person["favorite color"]); // "синий"</div>
+        
+        <div class="btn-container">
+            <button class="btn" onclick="showPersonInfo()">Показать информацию о человеке</button>
+        </div>
+        
+        <div id="personInfo" class="result" style="display: none;"></div>
+    </div>
+    
+    <div class="section">
+        <h2>4. Команда для удаления свойства</h2>
+        <p>Для удаления свойства из объекта используется оператор <code>delete</code>.</p>
+        
+        <div class="code-block">let book = {
+    title: "JavaScript для начинающих",
+    author: "Иванов И.И.",
+    pages: 350,
+    price: 1200
+};
+
+// Удаляем свойство price
+delete book.price;
+
+// Проверяем результат
+console.log("price" in book); // false
+console.log(book.price); // undefined</div>
+        
+        <div class="btn-container">
+            <button class="btn" onclick="showBookBeforeDelete()">Показать книгу до удаления</button>
+            <button class="btn" onclick="deleteBookPrice()">Удалить свойство price</button>
+            <button class="btn" onclick="showBookAfterDelete()">Показать книгу после удаления</button>
+        </div>
+        
+        <div id="bookInfo" class="result" style="display: none;"></div>
+    </div>
+    
+    <div class="section">
+        <h2>5. Команда для проверки существования свойства</h2>
+        <p>Для проверки существования свойства в объекте используется оператор <code>in</code> или метод <code>hasOwnProperty()</code>.</p>
+        
+        <div class="code-block">let student = {
+    name: "Мария",
+    age: 20,
+    course: 2
+};
+
+// Проверка с помощью оператора in
+console.log("name" in student); // true
+console.log("grade" in student); // false
+
+// Проверка с помощью метода hasOwnProperty()
+console.log(student.hasOwnProperty("age")); // true
+console.log(student.hasOwnProperty("subject")); // false</div>
+        
+        <div class="btn-container">
+            <button class="btn" onclick="checkStudentProperties()">Проверить свойства студента</button>
+        </div>
+        
+        <div id="propertyCheck" class="result" style="display: none;"></div>
+    </div>
+    
+    <div class="section">
+        <h2>6. Команда для перебора свойств объекта</h2>
+        <p>Для перебора свойств объекта можно использовать цикл <code>for...in</code> или методы <code>Object.keys()</code>, <code>Object.values()</code> и <code>Object.entries()</code>.</p>
+        
+        <div class="code-block">let phone = {
+    brand: "Samsung",
+    model: "Galaxy S21",
+    storage: 128,
+    color: "черный"
+};
+
+// Перебор с помощью for...in
+for (let key in phone) {
+    console.log(`${key}: ${phone[key]}`);
+}
+
+// Получение массива ключей с помощью Object.keys()
+let keys = Object.keys(phone);
+console.log(keys); // ["brand", "model", "storage", "color"]
+
+// Получение массива значений с помощью Object.values()
+let values = Object.values(phone);
+console.log(values); // ["Samsung", "Galaxy S21", 128, "черный"]
+
+// Получение массива пар [ключ, значение] с помощью Object.entries()
+let entries = Object.entries(phone);
+console.log(entries); // [["brand", "Samsung"], ["model", "Galaxy S21"], ...]</div>
+        
+        <div class="btn-container">
+            <button class="btn" onclick="showPhonePropertiesForIn()">Перебрать for...in</button>
+            <button class="btn" onclick="showPhonePropertiesKeys()">Показать Object.keys()</button>
+            <button class="btn" onclick="showPhonePropertiesValues()">Показать Object.values()</button>
+            <button class="btn" onclick="showPhonePropertiesEntries()">Показать Object.entries()</button>
+        </div>
+        
+        <div id="phoneProperties" class="result" style="display: none;"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

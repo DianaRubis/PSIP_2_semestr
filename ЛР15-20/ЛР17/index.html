@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Примеры обработки событий в JavaScript</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Демонстрация обработки событий в JavaScript</h1>
+    
+    <!-- ПРИМЕР 1: Использование атрибута HTML -->
+    <div class="example">
+        <h2>Пример 1: Атрибут HTML</h2>
+        <p>Обработчик назначен прямо в разметке через атрибут <code>onclick</code>:</p>
+        <input value="Нажми меня" onclick="alert('Клик!')" type="button">
+        <div class="highlight">
+            <code>&lt;input value="Нажми меня" onclick="alert('Клик!')" type="button"&gt;</code>
+        </div>
+    </div>
+    
+    <!-- ПРИМЕР 2: Использование функции -->
+    <div class="example">
+        <h2>Пример 2: Использование функции</h2>
+        <p>Отдельная функция вызывается при клике:</p>
+        <input type="button" onclick="countRabbits()" value="Считать кроликов!">
+        <div class="highlight">
+            <code>
+                function countRabbits() {<br>
+                &nbsp;&nbsp;for(let i=1; i<=3; i++) {<br>
+                &nbsp;&nbsp;&nbsp;&nbsp;alert("Кролик номер " + i);<br>
+                &nbsp;&nbsp;}<br>
+                }
+            </code>
+        </div>
+    </div>
+    
+    <!-- ПРИМЕР 3: Использование свойства DOM-объекта -->
+    <div class="example">
+        <h2>Пример 3: Свойство DOM-объекта</h2>
+        <p>Обработчик назначается через свойство DOM-элемента:</p>
+        <input id="elem" type="button" value="Нажми меня!">
+        <div class="highlight">
+            <code>
+                elem.onclick = function() {<br>
+                &nbsp;&nbsp;alert('Спасибо');<br>
+                };
+            </code>
+        </div>
+    </div>
+    
+    <!-- ПРИМЕР 4: Доступ к элементу через this -->
+    <div class="example">
+        <h2>Пример 4: Доступ через this</h2>
+        <p>Внутри обработчика <code>this</code> ссылается на текущий элемент:</p>
+        <button onclick="alert(this.innerHTML)">Нажми меня и увидишь мой текст</button>
+        <div class="highlight">
+            <code>&lt;button onclick="alert(this.innerHTML)"&gt;Нажми меня&lt;/button&gt;</code>
+        </div>
+    </div>
+    
+    <!-- ПРИМЕР 5: Метод addEventListener -->
+    <div class="example">
+        <h2>Пример 5: Метод addEventListener</h2>
+        <p>Позволяет добавлять несколько обработчиков на одно событие:</p>
+        <input id="multiElem" type="button" value="Нажми меня (несколько обработчиков)">
+        <div class="highlight">
+            <code>
+                elem.addEventListener("click", handler1);<br>
+                elem.addEventListener("click", handler2);<br>
+                elem.onclick = () => alert("Привет");
+            </code>
+        </div>
+    </div>
+    
+    <!-- ПРИМЕР 6: Удаление обработчика -->
+    <div class="example">
+        <h2>Пример 6: Удаление обработчика</h2>
+        <p>Демонстрация добавления и удаления обработчика:</p>
+        <input id="removeElem" type="button" value="Кликни для добавления обработчика">
+        <input id="removeBtn" type="button" value="Удалить обработчик" disabled>
+        <div id="removeStatus" style="margin-top: 10px; color: #666;"></div>
+    </div>
+    
+    <!-- ПРИМЕР 7 и 8: Всплытие и его остановка -->
+    <div class="example">
+        <h2>Пример 7-8: Всплытие событий</h2>
+        <p>Событие всплывает от внутреннего элемента к родителям. Нажмите на любой элемент:</p>
+        
+        <div class="bubble-demo">
+            <form onclick="alert('Форма (form)')">FORM (внешний элемент)
+                <div onclick="alert('Блок (div)')">DIV (средний элемент)
+                    <p onclick="alert('Параграф (p)')">P (внутренний элемент) - просто кликни</p>
+                </div>
+            </form>
+        </div>
+        
+        <p style="margin-top: 15px;">Теперь попробуйте с остановкой всплытия:</p>
+        
+        <div class="bubble-demo">
+            <form onclick="alert('Эта форма не должна сработать!')">FORM
+                <div onclick="alert('Блок с остановкой')">DIV
+                    <p onclick="event.stopPropagation(); alert('Всплытие остановлено!')">P - кликни (всплытие остановлено)</p>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
